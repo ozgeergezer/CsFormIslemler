@@ -155,6 +155,30 @@
     <Compile Include="OgrenciIsleri\frmBolumGiris.Designer.cs">
       <DependentUpon>frmBolumGiris.cs</DependentUpon>
     </Compile>
+    <Compile Include="OgrenciIsleri\OgrEntity\StudentsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OgrenciIsleri\OgrEntity\StudentsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OgrenciIsleri\OgrEntity\StudentsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OgrenciIsleri\OgrEntity\TblDepartments.cs">
+      <DependentUpon>StudentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OgrenciIsleri\OgrEntity\TblOgrBilgiler.cs">
+      <DependentUpon>StudentsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OgrenciIsleri\OgrEntity\TblSehirler.cs">
+      <DependentUpon>StudentsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AnaSayfa.resx">
@@ -197,6 +221,13 @@
     <None Include="Entity\NortModel.edmx.diagram">
       <DependentUpon>NortModel.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="OgrenciIsleri\OgrEntity\StudentsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>StudentsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="OgrenciIsleri\OgrEntity\StudentsModel.edmx.diagram">
+      <DependentUpon>StudentsModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -225,6 +256,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>NortModel.edmx</DependentUpon>
       <LastGenOutput>NortModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="OgrenciIsleri\OgrEntity\StudentsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentsModel.edmx</DependentUpon>
+      <LastGenOutput>StudentsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="OgrenciIsleri\OgrEntity\StudentsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>StudentsModel.edmx</DependentUpon>
+      <LastGenOutput>StudentsModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

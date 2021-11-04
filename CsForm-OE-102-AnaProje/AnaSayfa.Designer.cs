@@ -39,6 +39,10 @@ namespace CsForm_OE_102_AnaProje
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.gbSol = new System.Windows.Forms.GroupBox();
+            this.pnl1 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.btnGonderCons = new System.Windows.Forms.Button();
+            this.btnGonderProp = new System.Windows.Forms.Button();
             this.pnl7 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.pnl6 = new System.Windows.Forms.Panel();
@@ -50,22 +54,18 @@ namespace CsForm_OE_102_AnaProje
             this.pnl3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.pnl2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pnl1 = new System.Windows.Forms.Panel();
-            this.button8 = new System.Windows.Forms.Button();
-            this.btnGonderCons = new System.Windows.Forms.Button();
-            this.btnGonderProp = new System.Windows.Forms.Button();
-            this.btnCollaps = new System.Windows.Forms.Button();
             this.btnDepartment = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnCollaps = new System.Windows.Forms.Button();
             this.pnlUst.SuspendLayout();
             this.gbSol.SuspendLayout();
+            this.pnl1.SuspendLayout();
             this.pnl7.SuspendLayout();
             this.pnl6.SuspendLayout();
             this.pnl5.SuspendLayout();
             this.pnl4.SuspendLayout();
             this.pnl3.SuspendLayout();
             this.pnl2.SuspendLayout();
-            this.pnl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlUst
@@ -185,6 +185,51 @@ namespace CsForm_OE_102_AnaProje
             this.gbSol.TabStop = false;
             this.gbSol.Text = "***";
             this.gbSol.Visible = false;
+            // 
+            // pnl1
+            // 
+            this.pnl1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl1.Controls.Add(this.button8);
+            this.pnl1.Controls.Add(this.btnGonderCons);
+            this.pnl1.Controls.Add(this.btnGonderProp);
+            this.pnl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnl1.Location = new System.Drawing.Point(795, 16);
+            this.pnl1.Name = "pnl1";
+            this.pnl1.Size = new System.Drawing.Size(132, 429);
+            this.pnl1.TabIndex = 0;
+            this.pnl1.Visible = false;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Red;
+            this.button8.Location = new System.Drawing.Point(10, 131);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(116, 27);
+            this.button8.TabIndex = 3;
+            this.button8.Text = "Ürün Sorgulama";
+            this.button8.UseVisualStyleBackColor = false;
+            // 
+            // btnGonderCons
+            // 
+            this.btnGonderCons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnGonderCons.Location = new System.Drawing.Point(10, 84);
+            this.btnGonderCons.Name = "btnGonderCons";
+            this.btnGonderCons.Size = new System.Drawing.Size(116, 29);
+            this.btnGonderCons.TabIndex = 2;
+            this.btnGonderCons.Text = "Veri Gönder Cons";
+            this.btnGonderCons.UseVisualStyleBackColor = false;
+            this.btnGonderCons.Click += new System.EventHandler(this.btnGonderCons_Click);
+            // 
+            // btnGonderProp
+            // 
+            this.btnGonderProp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnGonderProp.Location = new System.Drawing.Point(10, 39);
+            this.btnGonderProp.Name = "btnGonderProp";
+            this.btnGonderProp.Size = new System.Drawing.Size(116, 29);
+            this.btnGonderProp.TabIndex = 1;
+            this.btnGonderProp.Text = "Veri Gönder Prop";
+            this.btnGonderProp.UseVisualStyleBackColor = false;
+            this.btnGonderProp.Click += new System.EventHandler(this.btnGonderProp_Click);
             // 
             // pnl7
             // 
@@ -308,6 +353,17 @@ namespace CsForm_OE_102_AnaProje
             this.pnl2.TabIndex = 1;
             this.pnl2.Visible = false;
             // 
+            // btnDepartment
+            // 
+            this.btnDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnDepartment.Location = new System.Drawing.Point(9, 39);
+            this.btnDepartment.Name = "btnDepartment";
+            this.btnDepartment.Size = new System.Drawing.Size(116, 29);
+            this.btnDepartment.TabIndex = 1;
+            this.btnDepartment.Text = "Bölüm Giriş";
+            this.btnDepartment.UseVisualStyleBackColor = false;
+            this.btnDepartment.Click += new System.EventHandler(this.btnDepartment_Click);
+            // 
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.Wheat;
@@ -318,51 +374,6 @@ namespace CsForm_OE_102_AnaProje
             this.label2.Size = new System.Drawing.Size(132, 24);
             this.label2.TabIndex = 0;
             this.label2.Text = "Panel2";
-            // 
-            // pnl1
-            // 
-            this.pnl1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pnl1.Controls.Add(this.button8);
-            this.pnl1.Controls.Add(this.btnGonderCons);
-            this.pnl1.Controls.Add(this.btnGonderProp);
-            this.pnl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl1.Location = new System.Drawing.Point(795, 16);
-            this.pnl1.Name = "pnl1";
-            this.pnl1.Size = new System.Drawing.Size(132, 429);
-            this.pnl1.TabIndex = 0;
-            this.pnl1.Visible = false;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Red;
-            this.button8.Location = new System.Drawing.Point(10, 131);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(116, 27);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "Ürün Sorgulama";
-            this.button8.UseVisualStyleBackColor = false;
-            // 
-            // btnGonderCons
-            // 
-            this.btnGonderCons.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnGonderCons.Location = new System.Drawing.Point(10, 84);
-            this.btnGonderCons.Name = "btnGonderCons";
-            this.btnGonderCons.Size = new System.Drawing.Size(116, 29);
-            this.btnGonderCons.TabIndex = 2;
-            this.btnGonderCons.Text = "Veri Gönder Cons";
-            this.btnGonderCons.UseVisualStyleBackColor = false;
-            this.btnGonderCons.Click += new System.EventHandler(this.btnGonderCons_Click);
-            // 
-            // btnGonderProp
-            // 
-            this.btnGonderProp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnGonderProp.Location = new System.Drawing.Point(10, 39);
-            this.btnGonderProp.Name = "btnGonderProp";
-            this.btnGonderProp.Size = new System.Drawing.Size(116, 29);
-            this.btnGonderProp.TabIndex = 1;
-            this.btnGonderProp.Text = "Veri Gönder Prop";
-            this.btnGonderProp.UseVisualStyleBackColor = false;
-            this.btnGonderProp.Click += new System.EventHandler(this.btnGonderProp_Click);
             // 
             // btnCollaps
             // 
@@ -375,16 +386,6 @@ namespace CsForm_OE_102_AnaProje
             this.btnCollaps.Text = "GİZLE";
             this.btnCollaps.UseVisualStyleBackColor = true;
             this.btnCollaps.Click += new System.EventHandler(this.btnCollaps_Click);
-            // 
-            // btnDepartment
-            // 
-            this.btnDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnDepartment.Location = new System.Drawing.Point(9, 39);
-            this.btnDepartment.Name = "btnDepartment";
-            this.btnDepartment.Size = new System.Drawing.Size(116, 29);
-            this.btnDepartment.TabIndex = 1;
-            this.btnDepartment.Text = "Bölüm Giriş";
-            this.btnDepartment.UseVisualStyleBackColor = false;
             // 
             // AnaSayfa
             // 
@@ -402,13 +403,13 @@ namespace CsForm_OE_102_AnaProje
             this.Load += new System.EventHandler(this.AnaSayfa_Load);
             this.pnlUst.ResumeLayout(false);
             this.gbSol.ResumeLayout(false);
+            this.pnl1.ResumeLayout(false);
             this.pnl7.ResumeLayout(false);
             this.pnl6.ResumeLayout(false);
             this.pnl5.ResumeLayout(false);
             this.pnl4.ResumeLayout(false);
             this.pnl3.ResumeLayout(false);
             this.pnl2.ResumeLayout(false);
-            this.pnl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
