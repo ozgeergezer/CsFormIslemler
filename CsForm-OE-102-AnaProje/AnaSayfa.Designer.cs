@@ -52,11 +52,11 @@ namespace CsForm_OE_102_AnaProje
             this.pnl2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.pnl1 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
             this.btnGonderCons = new System.Windows.Forms.Button();
             this.btnGonderProp = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnCollaps = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnDepartment = new System.Windows.Forms.Button();
             this.pnlUst.SuspendLayout();
             this.gbSol.SuspendLayout();
             this.pnl7.SuspendLayout();
@@ -153,7 +153,7 @@ namespace CsForm_OE_102_AnaProje
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(110, 35);
             this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Text = "Öğrenci İşleri";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -170,13 +170,13 @@ namespace CsForm_OE_102_AnaProje
             // gbSol
             // 
             this.gbSol.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.gbSol.Controls.Add(this.pnl1);
             this.gbSol.Controls.Add(this.pnl7);
             this.gbSol.Controls.Add(this.pnl6);
             this.gbSol.Controls.Add(this.pnl5);
             this.gbSol.Controls.Add(this.pnl4);
             this.gbSol.Controls.Add(this.pnl3);
             this.gbSol.Controls.Add(this.pnl2);
-            this.gbSol.Controls.Add(this.pnl1);
             this.gbSol.Dock = System.Windows.Forms.DockStyle.Left;
             this.gbSol.Location = new System.Drawing.Point(0, 74);
             this.gbSol.Name = "gbSol";
@@ -191,7 +191,7 @@ namespace CsForm_OE_102_AnaProje
             this.pnl7.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnl7.Controls.Add(this.label7);
             this.pnl7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl7.Location = new System.Drawing.Point(795, 16);
+            this.pnl7.Location = new System.Drawing.Point(663, 16);
             this.pnl7.Name = "pnl7";
             this.pnl7.Size = new System.Drawing.Size(132, 429);
             this.pnl7.TabIndex = 6;
@@ -213,7 +213,7 @@ namespace CsForm_OE_102_AnaProje
             this.pnl6.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnl6.Controls.Add(this.label6);
             this.pnl6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl6.Location = new System.Drawing.Point(663, 16);
+            this.pnl6.Location = new System.Drawing.Point(531, 16);
             this.pnl6.Name = "pnl6";
             this.pnl6.Size = new System.Drawing.Size(132, 429);
             this.pnl6.TabIndex = 5;
@@ -235,7 +235,7 @@ namespace CsForm_OE_102_AnaProje
             this.pnl5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnl5.Controls.Add(this.label5);
             this.pnl5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl5.Location = new System.Drawing.Point(531, 16);
+            this.pnl5.Location = new System.Drawing.Point(399, 16);
             this.pnl5.Name = "pnl5";
             this.pnl5.Size = new System.Drawing.Size(132, 429);
             this.pnl5.TabIndex = 4;
@@ -257,7 +257,7 @@ namespace CsForm_OE_102_AnaProje
             this.pnl4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnl4.Controls.Add(this.label4);
             this.pnl4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl4.Location = new System.Drawing.Point(399, 16);
+            this.pnl4.Location = new System.Drawing.Point(267, 16);
             this.pnl4.Name = "pnl4";
             this.pnl4.Size = new System.Drawing.Size(132, 429);
             this.pnl4.TabIndex = 3;
@@ -279,7 +279,7 @@ namespace CsForm_OE_102_AnaProje
             this.pnl3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pnl3.Controls.Add(this.label3);
             this.pnl3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl3.Location = new System.Drawing.Point(267, 16);
+            this.pnl3.Location = new System.Drawing.Point(135, 16);
             this.pnl3.Name = "pnl3";
             this.pnl3.Size = new System.Drawing.Size(132, 429);
             this.pnl3.TabIndex = 2;
@@ -299,9 +299,10 @@ namespace CsForm_OE_102_AnaProje
             // pnl2
             // 
             this.pnl2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl2.Controls.Add(this.btnDepartment);
             this.pnl2.Controls.Add(this.label2);
             this.pnl2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl2.Location = new System.Drawing.Point(135, 16);
+            this.pnl2.Location = new System.Drawing.Point(3, 16);
             this.pnl2.Name = "pnl2";
             this.pnl2.Size = new System.Drawing.Size(132, 429);
             this.pnl2.TabIndex = 1;
@@ -324,13 +325,22 @@ namespace CsForm_OE_102_AnaProje
             this.pnl1.Controls.Add(this.button8);
             this.pnl1.Controls.Add(this.btnGonderCons);
             this.pnl1.Controls.Add(this.btnGonderProp);
-            this.pnl1.Controls.Add(this.label1);
             this.pnl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnl1.Location = new System.Drawing.Point(3, 16);
+            this.pnl1.Location = new System.Drawing.Point(795, 16);
             this.pnl1.Name = "pnl1";
             this.pnl1.Size = new System.Drawing.Size(132, 429);
             this.pnl1.TabIndex = 0;
             this.pnl1.Visible = false;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Red;
+            this.button8.Location = new System.Drawing.Point(10, 131);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(116, 27);
+            this.button8.TabIndex = 3;
+            this.button8.Text = "Ürün Sorgulama";
+            this.button8.UseVisualStyleBackColor = false;
             // 
             // btnGonderCons
             // 
@@ -354,17 +364,6 @@ namespace CsForm_OE_102_AnaProje
             this.btnGonderProp.UseVisualStyleBackColor = false;
             this.btnGonderProp.Click += new System.EventHandler(this.btnGonderProp_Click);
             // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.Wheat;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Form İşlemleri";
-            // 
             // btnCollaps
             // 
             this.btnCollaps.Dock = System.Windows.Forms.DockStyle.Left;
@@ -377,15 +376,15 @@ namespace CsForm_OE_102_AnaProje
             this.btnCollaps.UseVisualStyleBackColor = true;
             this.btnCollaps.Click += new System.EventHandler(this.btnCollaps_Click);
             // 
-            // button8
+            // btnDepartment
             // 
-            this.button8.BackColor = System.Drawing.Color.Red;
-            this.button8.Location = new System.Drawing.Point(10, 131);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(116, 27);
-            this.button8.TabIndex = 3;
-            this.button8.Text = "Ürün Sorgulama";
-            this.button8.UseVisualStyleBackColor = false;
+            this.btnDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnDepartment.Location = new System.Drawing.Point(9, 39);
+            this.btnDepartment.Name = "btnDepartment";
+            this.btnDepartment.Size = new System.Drawing.Size(116, 29);
+            this.btnDepartment.TabIndex = 1;
+            this.btnDepartment.Text = "Bölüm Giriş";
+            this.btnDepartment.UseVisualStyleBackColor = false;
             // 
             // AnaSayfa
             // 
@@ -431,7 +430,6 @@ namespace CsForm_OE_102_AnaProje
         private System.Windows.Forms.Panel pnl2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnl1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnexit;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
@@ -444,6 +442,7 @@ namespace CsForm_OE_102_AnaProje
         private System.Windows.Forms.Button btnGonderCons;
         private System.Windows.Forms.Button btnCollaps;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnDepartment;
     }
 }
 
