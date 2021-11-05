@@ -82,12 +82,23 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
 
         private void Guncelle()
         {
-            TblDepartments blm = sdb.TblDepartments.First(x => x.Id == secimId); //db tek kayıt getirir
-            // TblDepartments blm1 = sdb.TblDepartments.Find(secimId); -- sadece !! id araması yapar.
-            blm.BolumAdi = txtBolumadi.Text;
-            sdb.SaveChanges();
-            // MessageBox.Show("Kayıt Güncelleştirildi."); mesaj sınıfı yazdık artık gerek kalmadı
-            m.Guncelle(true);
+            try
+            {
+                TblDepartments blm = sdb.TblDepartments.First(x => x.Id == secimId); //db tek kayıt getirir
+                //TblDepartments blm1 = sdb.TblDepartments.Find(secimId); -- sadece !! id araması yapar.
+                //blm.BolumAdi =txtBolumadi.Text;
+                blm.Id = 2222;
+                sdb.SaveChanges();
+                m.Guncelle(true);
+                //MessageBox.Show("Yeni Kayıt Oluşturuldu.");
+            }
+            catch (Exception e)
+            {
+                m.Guncelle(false);
+                m.Guncelle(e);
+                MessageBox.Show("" + e);
+                Close();
+            }
         }
 
         private void Liste_DoubleClick(object sender, EventArgs e)

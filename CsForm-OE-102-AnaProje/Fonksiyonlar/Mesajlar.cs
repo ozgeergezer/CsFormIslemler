@@ -23,5 +23,11 @@ namespace CsForm_OE_102_AnaProje.Fonksiyonlar
         {
             MessageBox.Show("Kayıt Güncellenmiştir.","Kayıt Güncelleme",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
+        public void Guncelle(Exception e)
+        {
+            MessageBox.Show(""+e,"Kayıt Güncelleme",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
+
+
     }
 }
