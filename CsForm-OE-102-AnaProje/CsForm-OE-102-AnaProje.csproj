@@ -112,6 +112,7 @@
     <Compile Include="Entity\Territories.cs">
       <DependentUpon>NortModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Fonksiyonlar\Mesajlar.cs" />
     <Compile Include="Formİslemleri\frmAlCons.cs">
       <SubType>Form</SubType>
     </Compile>
