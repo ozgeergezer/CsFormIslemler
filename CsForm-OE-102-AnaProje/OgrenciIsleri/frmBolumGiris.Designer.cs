@@ -30,13 +30,20 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
         private void InitializeComponent()
         {
             this.ScBolumler = new System.Windows.Forms.SplitContainer();
+            this.btnTemizle = new System.Windows.Forms.Button();
             this.btnKaydet = new System.Windows.Forms.Button();
             this.txtBolumadi = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Liste = new System.Windows.Forms.DataGridView();
+            this.btnSil = new System.Windows.Forms.Button();
+            this.btnTamsil = new System.Windows.Forms.Button();
+            this.chkPasif = new System.Windows.Forms.CheckBox();
+            this.rbaktif = new System.Windows.Forms.RadioButton();
+            this.rbpasif = new System.Windows.Forms.RadioButton();
+            this.rbHepsi = new System.Windows.Forms.RadioButton();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BolumAdi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnTemizle = new System.Windows.Forms.Button();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ScBolumler)).BeginInit();
             this.ScBolumler.Panel1.SuspendLayout();
             this.ScBolumler.Panel2.SuspendLayout();
@@ -56,6 +63,12 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             // ScBolumler.Panel1
             // 
             this.ScBolumler.Panel1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ScBolumler.Panel1.Controls.Add(this.rbHepsi);
+            this.ScBolumler.Panel1.Controls.Add(this.rbpasif);
+            this.ScBolumler.Panel1.Controls.Add(this.rbaktif);
+            this.ScBolumler.Panel1.Controls.Add(this.chkPasif);
+            this.ScBolumler.Panel1.Controls.Add(this.btnTamsil);
+            this.ScBolumler.Panel1.Controls.Add(this.btnSil);
             this.ScBolumler.Panel1.Controls.Add(this.btnTemizle);
             this.ScBolumler.Panel1.Controls.Add(this.btnKaydet);
             this.ScBolumler.Panel1.Controls.Add(this.txtBolumadi);
@@ -67,6 +80,16 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.ScBolumler.Size = new System.Drawing.Size(427, 358);
             this.ScBolumler.SplitterDistance = 138;
             this.ScBolumler.TabIndex = 0;
+            // 
+            // btnTemizle
+            // 
+            this.btnTemizle.Location = new System.Drawing.Point(10, 86);
+            this.btnTemizle.Name = "btnTemizle";
+            this.btnTemizle.Size = new System.Drawing.Size(92, 34);
+            this.btnTemizle.TabIndex = 3;
+            this.btnTemizle.Text = "Temizle";
+            this.btnTemizle.UseVisualStyleBackColor = true;
+            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
             // 
             // btnKaydet
             // 
@@ -105,7 +128,8 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.Liste.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Liste.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
-            this.BolumAdi});
+            this.BolumAdi,
+            this.isActive});
             this.Liste.Location = new System.Drawing.Point(3, 3);
             this.Liste.MultiSelect = false;
             this.Liste.Name = "Liste";
@@ -114,6 +138,68 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.Liste.Size = new System.Drawing.Size(418, 206);
             this.Liste.TabIndex = 0;
             this.Liste.DoubleClick += new System.EventHandler(this.Liste_DoubleClick);
+            // 
+            // btnSil
+            // 
+            this.btnSil.Location = new System.Drawing.Point(10, 48);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(92, 32);
+            this.btnSil.TabIndex = 4;
+            this.btnSil.Text = "Sil";
+            this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
+            // 
+            // btnTamsil
+            // 
+            this.btnTamsil.Location = new System.Drawing.Point(108, 48);
+            this.btnTamsil.Name = "btnTamsil";
+            this.btnTamsil.Size = new System.Drawing.Size(92, 32);
+            this.btnTamsil.TabIndex = 5;
+            this.btnTamsil.Text = "Tam Silme";
+            this.btnTamsil.UseVisualStyleBackColor = true;
+            this.btnTamsil.Click += new System.EventHandler(this.btnTamsil_Click);
+            // 
+            // chkPasif
+            // 
+            this.chkPasif.Location = new System.Drawing.Point(3, -1);
+            this.chkPasif.Name = "chkPasif";
+            this.chkPasif.Size = new System.Drawing.Size(51, 23);
+            this.chkPasif.TabIndex = 6;
+            this.chkPasif.Text = "Pasif";
+            this.chkPasif.UseVisualStyleBackColor = true;
+            this.chkPasif.CheckedChanged += new System.EventHandler(this.chkPasif_CheckedChanged);
+            // 
+            // rbaktif
+            // 
+            this.rbaktif.Location = new System.Drawing.Point(221, 79);
+            this.rbaktif.Name = "rbaktif";
+            this.rbaktif.Size = new System.Drawing.Size(74, 24);
+            this.rbaktif.TabIndex = 7;
+            this.rbaktif.Text = "aktif";
+            this.rbaktif.UseVisualStyleBackColor = true;
+            this.rbaktif.CheckedChanged += new System.EventHandler(this.rbaktif_CheckedChanged);
+            // 
+            // rbpasif
+            // 
+            this.rbpasif.Location = new System.Drawing.Point(221, 109);
+            this.rbpasif.Name = "rbpasif";
+            this.rbpasif.Size = new System.Drawing.Size(55, 17);
+            this.rbpasif.TabIndex = 7;
+            this.rbpasif.Text = "pasif";
+            this.rbpasif.UseVisualStyleBackColor = true;
+            this.rbpasif.CheckedChanged += new System.EventHandler(this.rbpasif_CheckedChanged);
+            // 
+            // rbHepsi
+            // 
+            this.rbHepsi.Checked = true;
+            this.rbHepsi.Location = new System.Drawing.Point(221, 56);
+            this.rbHepsi.Name = "rbHepsi";
+            this.rbHepsi.Size = new System.Drawing.Size(55, 17);
+            this.rbHepsi.TabIndex = 7;
+            this.rbHepsi.TabStop = true;
+            this.rbHepsi.Text = "Hepsi";
+            this.rbHepsi.UseVisualStyleBackColor = true;
+            this.rbHepsi.CheckedChanged += new System.EventHandler(this.rbHepsi_CheckedChanged);
             // 
             // id
             // 
@@ -130,15 +216,11 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.BolumAdi.Name = "BolumAdi";
             this.BolumAdi.ReadOnly = true;
             // 
-            // btnTemizle
+            // isActive
             // 
-            this.btnTemizle.Location = new System.Drawing.Point(10, 48);
-            this.btnTemizle.Name = "btnTemizle";
-            this.btnTemizle.Size = new System.Drawing.Size(92, 83);
-            this.btnTemizle.TabIndex = 3;
-            this.btnTemizle.Text = "Temizle";
-            this.btnTemizle.UseVisualStyleBackColor = true;
-            this.btnTemizle.Click += new System.EventHandler(this.btnTemizle_Click);
+            this.isActive.HeaderText = "Durum";
+            this.isActive.Name = "isActive";
+            this.isActive.ReadOnly = true;
             // 
             // frmBolumGiris
             // 
@@ -166,8 +248,15 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
         private System.Windows.Forms.TextBox txtBolumadi;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView Liste;
+        private System.Windows.Forms.Button btnTemizle;
+        private System.Windows.Forms.Button btnSil;
+        private System.Windows.Forms.Button btnTamsil;
+        private System.Windows.Forms.CheckBox chkPasif;
+        private System.Windows.Forms.RadioButton rbHepsi;
+        private System.Windows.Forms.RadioButton rbpasif;
+        private System.Windows.Forms.RadioButton rbaktif;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn BolumAdi;
-        private System.Windows.Forms.Button btnTemizle;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
     }
 }

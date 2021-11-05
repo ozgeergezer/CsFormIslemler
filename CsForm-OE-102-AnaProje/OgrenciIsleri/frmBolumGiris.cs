@@ -46,37 +46,80 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
         private void frmBolumGiris_Load(object sender, EventArgs e)
         {
             Listele(); // açılırken direkt listeler
+
         }
         private void Listele()
         {
-            Liste.Rows.Clear();
-            int i = 0;
-            var lst = (from s in sdb.TblDepartments select s).ToList();
-            foreach (var k in lst)
+            if (rbHepsi.Checked==true)
             {
-                Liste.Rows.Add();
-                Liste.Rows[i].Cells[0].Value=k.Id;
-                Liste.Rows[i].Cells[1].Value=k.BolumAdi;
-                i++;
+                Liste.Rows.Clear();
+                int i = 0;
+                var lst = (from s in sdb.TblDepartments select s).ToList(); //where koşulu yok gerekli tüm kayıtları getirecek
+                foreach (var k in lst)
+                {
+                    Liste.Rows.Add();
+                    Liste.Rows[i].Cells[0].Value = k.Id;
+                    Liste.Rows[i].Cells[1].Value = k.BolumAdi;
+                    Liste.Rows[i].Cells[2].Value = k.isActive;
+                    i++;
+                }
+
+                Liste.AllowUserToAddRows = false; 
             }
-            Liste.AllowUserToAddRows = false; //ekrana yazılan datagrid son satırı boş verir bu kodla onu vermez
-            Liste.AllowUserToDeleteRows = false; //silme 
-            Liste.AllowUserToOrderColumns = false;
+            else if (rbaktif.Checked==true)
+            {
+                Liste.Rows.Clear();
+                int i = 0;
+                var lst = (from s in sdb.TblDepartments where s.isActive == true select s).ToList(); //where var aktifliği true olanları getirecek
+                foreach (var k in lst)
+                {
+                    Liste.Rows.Add();
+                    Liste.Rows[i].Cells[0].Value = k.Id;
+                    Liste.Rows[i].Cells[1].Value = k.BolumAdi;
+                    i++;
+                }
+
+                Liste.AllowUserToAddRows = false;
+
+            }
+            else if (rbpasif.Checked==true)
+            {
+                Liste.Rows.Clear();
+                int i = 0;
+                var lst = (from s in sdb.TblDepartments where s.isActive == false select s).ToList();
+                foreach (var k in lst)
+                {
+                    Liste.Rows.Add();
+                    Liste.Rows[i].Cells[0].Value = k.Id;
+                    Liste.Rows[i].Cells[1].Value = k.BolumAdi;
+                    i++;
+                }
+
+                Liste.AllowUserToAddRows = false; 
+            }
         }
         private void YeniKayit()
         {
             try
             {
-                TblDepartments blm = new TblDepartments();
-                blm.BolumAdi = txtBolumadi.Text;
-                sdb.TblDepartments.Add(blm);
-                sdb.SaveChanges();
-                m.YeniKayit("Yeni Kayıt Oluşturuldu.");
-                //MessageBox.Show("Yeni Kayıt Oluşturuldu.");
+                if (txtBolumadi.Text!="")
+                {
+                    TblDepartments blm = new TblDepartments();
+                    blm.BolumAdi = txtBolumadi.Text;
+                    blm.isActive = true;
+                    sdb.TblDepartments.Add(blm);
+                    sdb.SaveChanges();
+                    m.YeniKayit("Yeni Kayıt Oluşturuldu.");
+                    //MessageBox.Show("Yeni Kayıt Oluşturuldu."); 
+                }
+                else
+                {
+                    MessageBox.Show("Hatalı işlem. Lütfen giriş yapınız");
+                }
             }
             catch (Exception e)
             {
-                MessageBox.Show(""+ e);
+                MessageBox.Show("Kayıt oluiturulamadı."+ e);
             }
         }
 
@@ -86,8 +129,8 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             {
                 TblDepartments blm = sdb.TblDepartments.First(x => x.Id == secimId); //db tek kayıt getirir
                 //TblDepartments blm1 = sdb.TblDepartments.Find(secimId); -- sadece !! id araması yapar.
-                //blm.BolumAdi =txtBolumadi.Text;
-                blm.Id = 2222;
+                blm.BolumAdi =txtBolumadi.Text;
+                //blm.Id = 2222;
                 sdb.SaveChanges();
                 m.Guncelle(true);
                 //MessageBox.Show("Yeni Kayıt Oluşturuldu.");
@@ -130,6 +173,106 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             //{
             //    Edit = false;
             //}
+        }
+
+        private void Sil()
+        {
+            try
+            {
+                if (secimId>0)
+                {
+                    TblDepartments blm = sdb.TblDepartments.Find(secimId);
+                    blm.isActive = false;
+                    //blm.Id = 444;
+                    sdb.SaveChanges();
+                    MessageBox.Show("Kayıt Silinmiştir.");
+                    m.Sil(true); 
+                }
+                else
+                {
+                    MessageBox.Show("Lütfen silinecek kayıdı ilk önce seçiniz.");
+                }
+            }
+            catch (Exception e)
+            {
+                m.Sil(e);
+            }
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            Sil();
+            Temizle();
+            Listele();
+        }
+
+        private void TamSil()
+        {
+            try
+            {
+                if (secimId > 0)
+                {
+                    TblDepartments blm = sdb.TblDepartments.Remove(sdb.TblDepartments.Find(secimId)); //remove işlemini yapacak
+                    sdb.SaveChanges();
+                    //blm.isActive = true;
+                    //blm.Id = 444;
+                    MessageBox.Show("Kayıt Silinmiştir.");
+                    m.Sil(true);
+                }
+                else
+                {
+                    MessageBox.Show("Lütfen silinecek kayıdı ilk önce seçiniz.");
+                }
+            }
+            catch (Exception e)
+            {
+                m.Sil(e);
+            }
+        }
+
+        private void btnTamsil_Click(object sender, EventArgs e)
+        {
+            TamSil();
+            Temizle();
+            Listele();
+        }
+
+        private void chkPasif_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPasif.Checked == true)
+            {
+                Liste.Rows.Clear();
+
+                int i = 0;
+                var lst = (from s in sdb.TblDepartments where s.isActive == false select s).ToList();
+                foreach (var k in lst)
+                {
+                    Liste.Rows.Add();
+                    Liste.Rows[i].Cells[0].Value = k.Id;
+                    Liste.Rows[i].Cells[1].Value = k.BolumAdi;
+                    i++;
+                }
+                Liste.AllowUserToAddRows = false;
+            }
+            else
+            {
+                Listele();
+            }
+        }
+
+        private void rbHepsi_CheckedChanged(object sender, EventArgs e)
+        {
+            Listele();
+        }
+
+        private void rbaktif_CheckedChanged(object sender, EventArgs e)
+        {
+            Listele();
+        }
+
+        private void rbpasif_CheckedChanged(object sender, EventArgs e)
+        {
+            Listele();
         }
     }
 }

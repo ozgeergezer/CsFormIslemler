@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StudentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="StudentsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TblDepartments">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BolumAdi" Type="nvarchar" MaxLength="100" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="TblOgrBilgiler">
           <Key>
@@ -68,19 +69,10 @@
             <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TblDepartments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BolumAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblOgrBilgiler" Relationship="Self.FK_TblOgrBilgiler_TblDepartments" FromRole="TblDepartments" ToRole="TblOgrBilgiler" />
-        </EntityType>
         <EntityType Name="TblOgrBilgiler">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,8 +84,8 @@
           <Property Name="OgNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="BolumId" Type="Int32" />
           <Property Name="SehirId" Type="Int32" />
-          <NavigationProperty Name="TblDepartments" Relationship="Self.FK_TblOgrBilgiler_TblDepartments" FromRole="TblOgrBilgiler" ToRole="TblDepartments" />
           <NavigationProperty Name="TblSehirler" Relationship="Self.FK_TblOgrBilgiler_TblSehirler" FromRole="TblOgrBilgiler" ToRole="TblSehirler" />
+          <NavigationProperty Name="TblDepartments" Relationship="StudentsModel.FK_TblOgrBilgiler_TblDepartments" FromRole="TblOgrBilgiler" ToRole="TblDepartments" />
         </EntityType>
         <EntityType Name="TblSehirler">
           <Key>
@@ -103,18 +95,6 @@
           <Property Name="sehir" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblOgrBilgiler" Relationship="Self.FK_TblOgrBilgiler_TblSehirler" FromRole="TblSehirler" ToRole="TblOgrBilgiler" />
         </EntityType>
-        <Association Name="FK_TblOgrBilgiler_TblDepartments">
-          <End Role="TblDepartments" Type="Self.TblDepartments" Multiplicity="0..1" />
-          <End Role="TblOgrBilgiler" Type="Self.TblOgrBilgiler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TblDepartments">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TblOgrBilgiler">
-              <PropertyRef Name="BolumId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TblOgrBilgiler_TblSehirler">
           <End Role="TblSehirler" Type="Self.TblSehirler" Multiplicity="0..1" />
           <End Role="TblOgrBilgiler" Type="Self.TblOgrBilgiler" Multiplicity="*" />
@@ -128,32 +108,45 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="StudentsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TblDepartments" EntityType="Self.TblDepartments" />
           <EntitySet Name="TblOgrBilgiler" EntityType="Self.TblOgrBilgiler" />
           <EntitySet Name="TblSehirler" EntityType="Self.TblSehirler" />
-          <AssociationSet Name="FK_TblOgrBilgiler_TblDepartments" Association="Self.FK_TblOgrBilgiler_TblDepartments">
-            <End Role="TblDepartments" EntitySet="TblDepartments" />
-            <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
-          </AssociationSet>
           <AssociationSet Name="FK_TblOgrBilgiler_TblSehirler" Association="Self.FK_TblOgrBilgiler_TblSehirler">
             <End Role="TblSehirler" EntitySet="TblSehirler" />
             <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
           </AssociationSet>
+          <EntitySet Name="TblDepartments" EntityType="StudentsModel.TblDepartments" />
+          <AssociationSet Name="FK_TblOgrBilgiler_TblDepartments" Association="StudentsModel.FK_TblOgrBilgiler_TblDepartments">
+            <End Role="TblDepartments" EntitySet="TblDepartments" />
+            <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TblDepartments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BolumAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="TblOgrBilgiler" Relationship="StudentsModel.FK_TblOgrBilgiler_TblDepartments" FromRole="TblDepartments" ToRole="TblOgrBilgiler" />
+        </EntityType>
+        <Association Name="FK_TblOgrBilgiler_TblDepartments">
+          <End Type="StudentsModel.TblDepartments" Role="TblDepartments" Multiplicity="0..1" />
+          <End Type="StudentsModel.TblOgrBilgiler" Role="TblOgrBilgiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TblOgrBilgiler">
+              <PropertyRef Name="BolumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="StudentsModelStoreContainer" CdmEntityContainer="StudentsEntities">
-          <EntitySetMapping Name="TblDepartments">
-            <EntityTypeMapping TypeName="StudentsModel.TblDepartments">
-              <MappingFragment StoreEntitySet="TblDepartments">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TblOgrBilgiler">
             <EntityTypeMapping TypeName="StudentsModel.TblOgrBilgiler">
               <MappingFragment StoreEntitySet="TblOgrBilgiler">
@@ -172,6 +165,15 @@
               <MappingFragment StoreEntitySet="TblSehirler">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sehir" ColumnName="sehir" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblDepartments">
+            <EntityTypeMapping TypeName="StudentsModel.TblDepartments">
+              <MappingFragment StoreEntitySet="TblDepartments">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

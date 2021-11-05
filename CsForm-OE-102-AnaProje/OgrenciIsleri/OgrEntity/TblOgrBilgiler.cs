@@ -22,7 +22,7 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri.OgrEntity
         public Nullable<int> BolumId { get; set; }
         public Nullable<int> SehirId { get; set; }
     
-        public virtual TblDepartments TblDepartments { get; set; }
         public virtual TblSehirler TblSehirler { get; set; }
+        public virtual TblDepartments TblDepartments { get; set; }
     }
 }
