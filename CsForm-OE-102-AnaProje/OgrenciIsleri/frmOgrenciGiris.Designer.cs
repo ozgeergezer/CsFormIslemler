@@ -48,13 +48,17 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.txtTc = new System.Windows.Forms.TextBox();
             this.txtSoyad = new System.Windows.Forms.TextBox();
             this.Liste = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnSil = new System.Windows.Forms.Button();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SiraNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TcNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OgrNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sehir = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bolum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.scOgr)).BeginInit();
             this.scOgr.Panel1.SuspendLayout();
             this.scOgr.Panel2.SuspendLayout();
@@ -92,6 +96,8 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             // 
             // scOgr.Panel1
             // 
+            this.scOgr.Panel1.Controls.Add(this.btnSil);
+            this.scOgr.Panel1.Controls.Add(this.button1);
             this.scOgr.Panel1.Controls.Add(this.btnKaydet);
             this.scOgr.Panel1.Controls.Add(this.mTxtOgrNo);
             this.scOgr.Panel1.Controls.Add(this.mTxtTcNo);
@@ -256,43 +262,78 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.Liste.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Liste.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
+            this.SiraNo,
             this.Ad,
             this.Surname,
             this.TcNo,
             this.OgrNo,
             this.Sehir,
-            this.Bolum});
+            this.Bolum,
+            this.isActive});
             this.Liste.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Liste.Location = new System.Drawing.Point(0, 0);
+            this.Liste.MultiSelect = false;
             this.Liste.Name = "Liste";
+            this.Liste.ReadOnly = true;
+            this.Liste.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Liste.Size = new System.Drawing.Size(796, 148);
             this.Liste.TabIndex = 0;
             this.Liste.DoubleClick += new System.EventHandler(this.Liste_DoubleClick);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(681, 47);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(105, 42);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnSil
+            // 
+            this.btnSil.Location = new System.Drawing.Point(681, 3);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(105, 38);
+            this.btnSil.TabIndex = 8;
+            this.btnSil.Text = "Kaydı Sil";
+            this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
             // 
             // Id
             // 
             this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             this.Id.Width = 41;
+            // 
+            // SiraNo
+            // 
+            this.SiraNo.HeaderText = "SiraNo";
+            this.SiraNo.Name = "SiraNo";
+            this.SiraNo.ReadOnly = true;
             // 
             // Ad
             // 
             this.Ad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Ad.HeaderText = "Ad";
             this.Ad.Name = "Ad";
+            this.Ad.ReadOnly = true;
             // 
             // Surname
             // 
             this.Surname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Surname.HeaderText = "Soyad";
             this.Surname.Name = "Surname";
+            this.Surname.ReadOnly = true;
             // 
             // TcNo
             // 
             this.TcNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.TcNo.HeaderText = "TcNo";
             this.TcNo.Name = "TcNo";
+            this.TcNo.ReadOnly = true;
             this.TcNo.Width = 59;
             // 
             // OgrNo
@@ -300,6 +341,7 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.OgrNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.OgrNo.HeaderText = "Öğrenci No";
             this.OgrNo.Name = "OgrNo";
+            this.OgrNo.ReadOnly = true;
             this.OgrNo.Width = 86;
             // 
             // Sehir
@@ -307,12 +349,22 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
             this.Sehir.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Sehir.HeaderText = "Sehir";
             this.Sehir.Name = "Sehir";
+            this.Sehir.ReadOnly = true;
             // 
             // Bolum
             // 
             this.Bolum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Bolum.HeaderText = "Bolum";
             this.Bolum.Name = "Bolum";
+            this.Bolum.ReadOnly = true;
+            // 
+            // isActive
+            // 
+            this.isActive.HeaderText = "Durum";
+            this.isActive.Name = "isActive";
+            this.isActive.ReadOnly = true;
+            this.isActive.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isActive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // frmOgrenciGiris
             // 
@@ -355,12 +407,16 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
         private System.Windows.Forms.MaskedTextBox mTxtTcNo;
         private System.Windows.Forms.MaskedTextBox mTxtOgrNo;
         private System.Windows.Forms.Button btnKaydet;
+        private System.Windows.Forms.Button btnSil;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SiraNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
         private System.Windows.Forms.DataGridViewTextBoxColumn TcNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn OgrNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sehir;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bolum;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
     }
 }

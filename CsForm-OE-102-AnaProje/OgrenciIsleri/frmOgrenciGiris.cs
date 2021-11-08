@@ -48,12 +48,12 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
                 //ogr.SehirId = sehirId; // en başa gidip public sehirid tanımladık.
                 //ogr.BolumId = bolId;
                 ogr.BolumId = sdb.TblDepartments.First(x => x.BolumAdi == txtBolumler.Text).Id;
+                ogr.isActive = true;
 
                 sdb.TblOgrBilgiler.Add(ogr);
                 sdb.SaveChanges();
                 m.YeniKayit("Öğrenci bilgileri kaydedildi.");
                 Listele();
-
             }
             catch (Exception e)
             {
@@ -65,7 +65,9 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
         {
             Liste.Rows.Clear();
             int i = 0;
+            int sayi = 1;
             var lst = from s in sdb.TblOgrBilgiler
+                      where s.isActive==true
                       select new
                       {
                           id = s.Id,
@@ -74,20 +76,27 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
                           tc = s.TcNo,
                           ogrno = s.OgNo,
                           sehir = s.TblSehirler.sehir,
-                          bolum = s.TblDepartments.BolumAdi
+                          bolum = s.TblDepartments.BolumAdi,
+                          durum = s.isActive
                       };
             foreach (var k in lst)
             {
+                //string sayi1 = sayi.ToString().PadLeft(7, '0');
+                string sayi1 = DateTime.Now.Year+"_"+sayi.ToString().PadLeft(7,'0');
                 Liste.Rows.Add();
                 Liste.Rows[i].Cells["id"].Value = k.id;
-                Liste.Rows[i].Cells[1].Value = k.ad;
-                Liste.Rows[i].Cells[2].Value = k.soyad;
-                Liste.Rows[i].Cells[3].Value = k.tc;
-                Liste.Rows[i].Cells[4].Value = k.ogrno;
-                Liste.Rows[i].Cells[5].Value = k.sehir;
-                Liste.Rows[i].Cells[6].Value = k.bolum;
+                Liste.Rows[i].Cells[1].Value = sayi1 ;
+                Liste.Rows[i].Cells[2].Value = k.ad;
+                Liste.Rows[i].Cells[3].Value = k.soyad;
+                Liste.Rows[i].Cells[4].Value = k.tc;
+                Liste.Rows[i].Cells[5].Value = k.ogrno;
+                Liste.Rows[i].Cells[6].Value = k.sehir;
+                Liste.Rows[i].Cells[7].Value = k.bolum;
+                Liste.Rows[i].Cells[8].Value = k.durum;
                 i++;
+                sayi++;
             }
+            Liste.AllowUserToAddRows = false;  //readonly true yaparsam kullanıcı listeye müdehale edezmez.
         }
 
         private void Temizle()
@@ -169,6 +178,7 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
                 ogr.BolumId = sdb.TblDepartments.First(x => x.BolumAdi == txtBolumler.Text).Id;
                 ogr.TcNo = mTxtTcNo.Text;
                 ogr.OgNo = mTxtOgrNo.Text;
+                //buraya isActive çalıştırmaya gerek yok çünkü kullanıcı aktif pasif yapmamalı
                 sdb.SaveChanges();
                 m.Guncelle(true);
                 Temizle();
@@ -212,6 +222,16 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri
                 edit = false;
                 secimID=-1;
             }
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            TblOgrBilgiler ogr = sdb.TblOgrBilgiler.Find(secimID);
+            ogr.isActive = false;
+            sdb.SaveChanges();
+            MessageBox.Show("Kayıt Başarıyla Silindi");
+            Temizle();
+            Listele();
         }
     }
 }

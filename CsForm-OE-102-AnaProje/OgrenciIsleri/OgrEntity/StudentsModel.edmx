@@ -24,6 +24,7 @@
           <Property Name="OgNo" Type="nchar" MaxLength="10" />
           <Property Name="BolumId" Type="int" />
           <Property Name="SehirId" Type="int" />
+          <Property Name="isActive" Type="bit" />
         </EntityType>
         <EntityType Name="TblSehirler">
           <Key>
@@ -116,6 +117,7 @@
           <Property Name="SehirId" Type="Int32" />
           <NavigationProperty Name="TblDepartments" Relationship="StudentsModel.FK_TblOgrBilgiler_TblDepartments" FromRole="TblOgrBilgiler" ToRole="TblDepartments" />
           <NavigationProperty Name="TblSehirler" Relationship="StudentsModel.FK_TblOgrBilgiler_TblSehirler" FromRole="TblOgrBilgiler" ToRole="TblSehirler" />
+          <Property Name="isActive" Type="Boolean" />
         </EntityType>
         <Association Name="FK_TblOgrBilgiler_TblDepartments">
           <End Type="StudentsModel.TblDepartments" Role="TblDepartments" Multiplicity="0..1" />
@@ -167,6 +169,7 @@
           <EntitySetMapping Name="TblOgrBilgiler">
             <EntityTypeMapping TypeName="StudentsModel.TblOgrBilgiler">
               <MappingFragment StoreEntitySet="TblOgrBilgiler">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="SehirId" ColumnName="SehirId" />
                 <ScalarProperty Name="BolumId" ColumnName="BolumId" />
                 <ScalarProperty Name="OgNo" ColumnName="OgNo" />
