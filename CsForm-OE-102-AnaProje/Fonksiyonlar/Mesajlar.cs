@@ -52,5 +52,9 @@ namespace CsForm_OE_102_AnaProje.Fonksiyonlar
         {
             return MessageBox.Show("Seçili olan Tüm kayıt Silinecektir. \n İşlemi onaylıyor musunuz ?", "Tam Silme işlemi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
         }
+        public void Hata(Exception hata)
+        {
+            MessageBox.Show(hata.Message,"işler yolunda gitmiyor",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        }
     }
 }

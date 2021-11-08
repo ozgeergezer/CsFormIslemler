@@ -57,6 +57,7 @@ namespace CsForm_OE_102_AnaProje
             this.btnDepartment = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCollaps = new System.Windows.Forms.Button();
+            this.btnOgrenciGiris = new System.Windows.Forms.Button();
             this.pnlUst.SuspendLayout();
             this.gbSol.SuspendLayout();
             this.pnl1.SuspendLayout();
@@ -344,6 +345,7 @@ namespace CsForm_OE_102_AnaProje
             // pnl2
             // 
             this.pnl2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pnl2.Controls.Add(this.btnOgrenciGiris);
             this.pnl2.Controls.Add(this.btnDepartment);
             this.pnl2.Controls.Add(this.label2);
             this.pnl2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -386,6 +388,17 @@ namespace CsForm_OE_102_AnaProje
             this.btnCollaps.Text = "GİZLE";
             this.btnCollaps.UseVisualStyleBackColor = true;
             this.btnCollaps.Click += new System.EventHandler(this.btnCollaps_Click);
+            // 
+            // btnOgrenciGiris
+            // 
+            this.btnOgrenciGiris.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnOgrenciGiris.Location = new System.Drawing.Point(10, 75);
+            this.btnOgrenciGiris.Name = "btnOgrenciGiris";
+            this.btnOgrenciGiris.Size = new System.Drawing.Size(115, 27);
+            this.btnOgrenciGiris.TabIndex = 2;
+            this.btnOgrenciGiris.Text = "Öğrenci Giriş";
+            this.btnOgrenciGiris.UseVisualStyleBackColor = false;
+            this.btnOgrenciGiris.Click += new System.EventHandler(this.btnOgrenciGiris_Click);
             // 
             // AnaSayfa
             // 
@@ -444,6 +457,7 @@ namespace CsForm_OE_102_AnaProje
         private System.Windows.Forms.Button btnCollaps;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button btnDepartment;
+        private System.Windows.Forms.Button btnOgrenciGiris;
     }
 }
 

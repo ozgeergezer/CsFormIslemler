@@ -17,10 +17,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ad" Type="nchar" MaxLength="10" />
           <Property Name="Soyad" Type="nchar" MaxLength="10" />
-          <Property Name="TcNo" Type="nchar" MaxLength="10" />
+          <Property Name="TcNo" Type="nchar" MaxLength="11" />
           <Property Name="OgNo" Type="nchar" MaxLength="10" />
           <Property Name="BolumId" Type="int" />
           <Property Name="SehirId" Type="int" />
@@ -73,50 +73,24 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="StudentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="TblOgrBilgiler">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Soyad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="TcNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="OgNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="BolumId" Type="Int32" />
-          <Property Name="SehirId" Type="Int32" />
-          <NavigationProperty Name="TblSehirler" Relationship="Self.FK_TblOgrBilgiler_TblSehirler" FromRole="TblOgrBilgiler" ToRole="TblSehirler" />
-          <NavigationProperty Name="TblDepartments" Relationship="StudentsModel.FK_TblOgrBilgiler_TblDepartments" FromRole="TblOgrBilgiler" ToRole="TblDepartments" />
-        </EntityType>
         <EntityType Name="TblSehirler">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="sehir" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblOgrBilgiler" Relationship="Self.FK_TblOgrBilgiler_TblSehirler" FromRole="TblSehirler" ToRole="TblOgrBilgiler" />
+          <NavigationProperty Name="TblOgrBilgiler" Relationship="StudentsModel.FK_TblOgrBilgiler_TblSehirler" FromRole="TblSehirler" ToRole="TblOgrBilgiler" />
         </EntityType>
-        <Association Name="FK_TblOgrBilgiler_TblSehirler">
-          <End Role="TblSehirler" Type="Self.TblSehirler" Multiplicity="0..1" />
-          <End Role="TblOgrBilgiler" Type="Self.TblOgrBilgiler" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TblSehirler">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="TblOgrBilgiler">
-              <PropertyRef Name="SehirId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="StudentsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="TblOgrBilgiler" EntityType="Self.TblOgrBilgiler" />
           <EntitySet Name="TblSehirler" EntityType="Self.TblSehirler" />
-          <AssociationSet Name="FK_TblOgrBilgiler_TblSehirler" Association="Self.FK_TblOgrBilgiler_TblSehirler">
-            <End Role="TblSehirler" EntitySet="TblSehirler" />
-            <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
-          </AssociationSet>
           <EntitySet Name="TblDepartments" EntityType="StudentsModel.TblDepartments" />
+          <EntitySet Name="TblOgrBilgiler" EntityType="StudentsModel.TblOgrBilgiler" />
           <AssociationSet Name="FK_TblOgrBilgiler_TblDepartments" Association="StudentsModel.FK_TblOgrBilgiler_TblDepartments">
             <End Role="TblDepartments" EntitySet="TblDepartments" />
+            <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblOgrBilgiler_TblSehirler" Association="StudentsModel.FK_TblOgrBilgiler_TblSehirler">
+            <End Role="TblSehirler" EntitySet="TblSehirler" />
             <End Role="TblOgrBilgiler" EntitySet="TblOgrBilgiler" />
           </AssociationSet>
         </EntityContainer>
@@ -128,6 +102,20 @@
           <Property Name="BolumAdi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
           <NavigationProperty Name="TblOgrBilgiler" Relationship="StudentsModel.FK_TblOgrBilgiler_TblDepartments" FromRole="TblDepartments" ToRole="TblOgrBilgiler" />
+        </EntityType>
+        <EntityType Name="TblOgrBilgiler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Soyad" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TcNo" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="OgNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="BolumId" Type="Int32" />
+          <Property Name="SehirId" Type="Int32" />
+          <NavigationProperty Name="TblDepartments" Relationship="StudentsModel.FK_TblOgrBilgiler_TblDepartments" FromRole="TblOgrBilgiler" ToRole="TblDepartments" />
+          <NavigationProperty Name="TblSehirler" Relationship="StudentsModel.FK_TblOgrBilgiler_TblSehirler" FromRole="TblOgrBilgiler" ToRole="TblSehirler" />
         </EntityType>
         <Association Name="FK_TblOgrBilgiler_TblDepartments">
           <End Type="StudentsModel.TblDepartments" Role="TblDepartments" Multiplicity="0..1" />
@@ -141,25 +129,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblOgrBilgiler_TblSehirler">
+          <End Type="StudentsModel.TblSehirler" Role="TblSehirler" Multiplicity="0..1" />
+          <End Type="StudentsModel.TblOgrBilgiler" Role="TblOgrBilgiler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblSehirler">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TblOgrBilgiler">
+              <PropertyRef Name="SehirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="StudentsModelStoreContainer" CdmEntityContainer="StudentsEntities">
-          <EntitySetMapping Name="TblOgrBilgiler">
-            <EntityTypeMapping TypeName="StudentsModel.TblOgrBilgiler">
-              <MappingFragment StoreEntitySet="TblOgrBilgiler">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Ad" ColumnName="Ad" />
-                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
-                <ScalarProperty Name="TcNo" ColumnName="TcNo" />
-                <ScalarProperty Name="OgNo" ColumnName="OgNo" />
-                <ScalarProperty Name="BolumId" ColumnName="BolumId" />
-                <ScalarProperty Name="SehirId" ColumnName="SehirId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TblSehirler">
             <EntityTypeMapping TypeName="StudentsModel.TblSehirler">
               <MappingFragment StoreEntitySet="TblSehirler">
@@ -173,6 +160,19 @@
               <MappingFragment StoreEntitySet="TblDepartments">
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="BolumAdi" ColumnName="BolumAdi" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblOgrBilgiler">
+            <EntityTypeMapping TypeName="StudentsModel.TblOgrBilgiler">
+              <MappingFragment StoreEntitySet="TblOgrBilgiler">
+                <ScalarProperty Name="SehirId" ColumnName="SehirId" />
+                <ScalarProperty Name="BolumId" ColumnName="BolumId" />
+                <ScalarProperty Name="OgNo" ColumnName="OgNo" />
+                <ScalarProperty Name="TcNo" ColumnName="TcNo" />
+                <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

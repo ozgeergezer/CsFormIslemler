@@ -25,8 +25,8 @@ namespace CsForm_OE_102_AnaProje.OgrenciIsleri.OgrEntity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<TblOgrBilgiler> TblOgrBilgiler { get; set; }
         public virtual DbSet<TblSehirler> TblSehirler { get; set; }
         public virtual DbSet<TblDepartments> TblDepartments { get; set; }
+        public virtual DbSet<TblOgrBilgiler> TblOgrBilgiler { get; set; }
     }
 }
